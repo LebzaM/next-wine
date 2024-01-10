@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Wine {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  year         String
+  type         WineType  @default(RED)
+  varietal     Varietal  @default(MERLOT)
+  rating       String?
+  consumed     Boolean?
+  dateConsumed DateTime? @updatedAt
+}
+
+// Define the enum for wine types
+enum WineType {
+  RED
+  WHITE
+  ROSE
+  WHITEBLEND
+  REDBLEND
+}
+
+// Define the enum for wine varietals
+enum Varietal {
+  CABERNETSAUVIGNON
+  MERLOT
+  SHIRAZ
+  CHENINBLANC
+  SAUVIGNONBLANC
+  VERDELHO
+  CHARDONNAY
+  DURIF
+  // Add more varietals as needed
+}
