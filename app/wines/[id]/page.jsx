@@ -1,7 +1,7 @@
 import React from 'react';
 import prisma from '@/prisma/client';
 import { notFound } from 'next/navigation';
-
+import { Heading, Flex, Card } from '@radix-ui/themes';
 
 const WineDetailPage = async ({ params }) => {
   const wine = await prisma.wine.findUnique({
@@ -12,10 +12,16 @@ const WineDetailPage = async ({ params }) => {
 
   return (
     <div>
-      <p>{wine.name}</p>
+      <Heading>{wine.name}</Heading>
+      <Flex className="space-x-3" my="2">
+      
+      <p>{wine.dateConsumed.toDateString()}</p>
+      </Flex>
+      <Card>
       <p>{wine.year}</p>
       <p>{wine.consumed}</p>
-      <p>{wine.dateConsumed.toDateString()}</p>
+      </Card>
+      
     </div>
   );
 };
