@@ -1,8 +1,11 @@
 import React from 'react';
 import prisma from '@/prisma/client';
 import { notFound } from 'next/navigation';
-import { Heading, Flex, Card } from '@radix-ui/themes';
-
+import { Heading, Flex, Card, Grid, Box, Button } from '@radix-ui/themes';
+import Link from 'next/link';
+import { Pencil2Icon } from '@radix-ui/react-icons';
+import EditWineButton from './EditWineButton';
+import WineDetails from './WineDetails';
 const WineDetailPage = async ({ params }) => {
   const wine = await prisma.wine.findUnique({
     where: { id: params.id },
@@ -11,18 +14,15 @@ const WineDetailPage = async ({ params }) => {
   if (!wine) notFound();
 
   return (
-    <div>
-      <Heading>{wine.name}</Heading>
-      <Flex className="space-x-3" my="2">
+    <Grid columns={{ initial: '1', md: '2' }} gap="5">
+    <Box>
       
-      <p>{wine.dateConsumed.toDateString()}</p>
-      </Flex>
-      <Card>
-      <p>{wine.year}</p>
-      <p>{wine.consumed}</p>
-      </Card>
-      
-    </div>
+      <WineDetails wine={wine} />
+    </Box>
+    <Box>
+      <EditWineButton wineId={wine.id}/>
+    </Box>
+  </Grid>
   );
 };
 
