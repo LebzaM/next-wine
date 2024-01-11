@@ -42,7 +42,8 @@ const Winepage = async () => {
           {wines.map((wine) => (
             <Table.Row key={wine.id}>
               <Table.Cell>
-                {wine.name}
+              <Link href={`/wines/${wine.id}`}>{wine.name}</Link>
+                
                 <div className="block md:hidden">{wine.year}</div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
