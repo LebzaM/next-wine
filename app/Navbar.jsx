@@ -45,7 +45,7 @@ const NavLinks = () => {
       },
       {
         id: 2,
-        href: '/login',
+        href: '/wines',
         label: 'Wines',
       },
     ];

@@ -8,7 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Link from '../components/link';
 const Winepage = async () => {
   const wines = await prisma.wine.findMany();
-  
+  console.log(wines)
   return (
     <>
     <div>
