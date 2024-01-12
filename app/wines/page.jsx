@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@radix-ui/themes'
-import prisma from '@/prisma/client'
+import prisma from '../../prisma/client'
 import { Table } from '@radix-ui/themes';
 import WineActions from './WineActions';
 import Skeleton from 'react-loading-skeleton';
@@ -8,7 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Link from '../components/link';
 const Winepage = async () => {
   const wines = await prisma.wine.findMany();
-  
+  console.log(wines)
   return (
     <>
     <div>
@@ -44,7 +44,10 @@ const Winepage = async () => {
               <Table.Cell>
               <Link href={`/wines/${wine.id}`}>{wine.name}</Link>
                 
-                <div className="block md:hidden">{wine.year}</div>
+                
+              </Table.Cell>
+              <Table.Cell className="hidden md:table-cell">
+              {wine.year}
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
                 {wine.type}
@@ -53,14 +56,14 @@ const Winepage = async () => {
                 {wine.varietal}
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {wine?.rating}
+                {wine.rating ? wine.rating :"0"}
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {wine.consumed}
+                {wine.consumed ? 'Yes' : 'No'}
               </Table.Cell>
               
               <Table.Cell className="hidden md:table-cell">
-                {wine.dateConsumed.toDateString()}
+              {wine.consumed ? wine.dateConsumed.toDateString() : 'N/A'}
               </Table.Cell>
             </Table.Row>
           ))}
