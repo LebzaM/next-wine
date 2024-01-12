@@ -5,12 +5,12 @@ import { Heading, Flex, Card, Grid, Box, Button } from '@radix-ui/themes';
 import Link from 'next/link';
 import { Pencil2Icon } from '@radix-ui/react-icons';
 import EditWineButton from './EditWineButton';
-import WineDetails from './WineDetails';
+import WineDetails from '../../_components/WineDetails';
 const WineDetailPage = async ({ params }) => {
   const wine = await prisma.wine.findUnique({
     where: { id: params.id },
   });
-
+   console.log(wine)
   if (!wine) notFound();
 
   return (

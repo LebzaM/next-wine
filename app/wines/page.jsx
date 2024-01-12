@@ -1,14 +1,15 @@
 import React from 'react'
-import { Button } from '@radix-ui/themes'
+import { Button } from '@radix-ui/themes';
 import prisma from '../../prisma/client'
 import { Table } from '@radix-ui/themes';
 import WineActions from './WineActions';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Link from '../components/link';
+import { ButtonIcon } from '@radix-ui/react-icons';
 const Winepage = async () => {
   const wines = await prisma.wine.findMany();
-  console.log(wines)
+  // console.log(wines)
   return (
     <>
     <div>
@@ -36,13 +37,16 @@ const Winepage = async () => {
             <Table.ColumnHeaderCell className="hidden md:table-cell">
               Date Consumed
             </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className="hidden md:table-cell">
+              Update
+            </Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {wines.map((wine) => (
             <Table.Row key={wine.id}>
               <Table.Cell>
-              <Link href={`/wines/${wine.id}`}>{wine.name}</Link>
+              {wine.name}
                 
                 
               </Table.Cell>
@@ -64,6 +68,12 @@ const Winepage = async () => {
               
               <Table.Cell className="hidden md:table-cell">
               {wine.consumed ? wine.dateConsumed.toDateString() : 'N/A'}
+              </Table.Cell>
+
+              <Table.Cell className="hidden md:table-cell">
+              <Button>
+                <Link href={`/wines/${wine.id}`} className="text-white">Update</Link>
+              </Button>
               </Table.Cell>
             </Table.Row>
           ))}

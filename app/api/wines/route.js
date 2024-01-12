@@ -13,6 +13,9 @@ const createWine = z.object({
 
 });
 
+
+
+
 export async function POST(NextRequest) {
   const body = await NextRequest.json();
   body.consumed = body.consumed === 'Yes';
@@ -31,3 +34,5 @@ export async function POST(NextRequest) {
 
   return NextResponse.json(newWine, { status: 201 });
 }
+
+
