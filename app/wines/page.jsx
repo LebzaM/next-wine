@@ -5,7 +5,7 @@ import { Table } from '@radix-ui/themes';
 import WineActions from './WineActions';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import Link from '../components/link';
+import Link from 'next/link';
 import { ButtonIcon } from '@radix-ui/react-icons';
 const Winepage = async () => {
   const wines = await prisma.wine.findMany();
