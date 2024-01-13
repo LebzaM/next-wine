@@ -4,6 +4,7 @@ import './theme-config.css';
 import './globals.css';
 import { Container, Theme } from '@radix-ui/themes'
 import Navbar from './Navbar'
+import AuthProvider from './auth/Provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -15,12 +16,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+      <AuthProvider>
       <Theme accentColor="violet" appearance="light">
         <Navbar />
       <main className="px-5">
                 <Container>{children}</Container>
         </main>
         </Theme>
+        </AuthProvider>
       </body>
     </html>
   )
