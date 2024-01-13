@@ -7,14 +7,19 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Link from 'next/link';
 import { ButtonIcon } from '@radix-ui/react-icons';
+import { getServerSession } from 'next-auth';
+import authOptions from '../auth/authOptions';
 const Winepage = async () => {
+  const session = await getServerSession(authOptions);
   const wines = await prisma.wine.findMany();
   // console.log(wines)
   return (
     <>
     <div>
-      
-        <WineActions />
+        {session &&(
+          <WineActions />
+        )}
+        
         <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
@@ -71,9 +76,13 @@ const Winepage = async () => {
               </Table.Cell>
 
               <Table.Cell className="hidden md:table-cell">
-              <Button>
+              {session &&(
+                <Button>
                 <Link href={`/wines/${wine.id}`} className="text-white">Update</Link>
               </Button>
+              )}
+              {!session && <Link href="/api/auth/signin">Login To Edit</Link>}
+              
               </Table.Cell>
             </Table.Row>
           ))}

@@ -14,7 +14,7 @@ const Homepage = () => {
           Explore our exquisite collection of fine wines.
         </p>
         <Button>
-          <Link href='/login'>Login</Link>
+          <Link href='/wines'>Explore Wines</Link>
         </Button>
         
       </div>

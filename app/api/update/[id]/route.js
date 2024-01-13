@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import prisma from '../../../../prisma/client';
 import { z } from 'zod';
+import authOptions from '../../../auth/authOptions'
+import { getServerSession } from 'next-auth';
 
 const uppdaWine = z.object({
   name: z.string().min(3).max(255),
@@ -13,7 +15,8 @@ const uppdaWine = z.object({
 });
 
 export async function PATCH(NextRequest,{params}) {
-  
+  const session = await getServerSession(authOptions);
+  if(!session) return NextResponse.json({}, {status:401});
   const body = await NextRequest.json();
   const validation = uppdaWine.safeParse(body);
 

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import prisma from '../../../prisma/client';
+import { getServerSession } from 'next-auth';
+import authOptions from '../../auth/authOptions'
 import { z } from 'zod';
 
 const createWine = z.object({
@@ -17,6 +19,8 @@ const createWine = z.object({
 
 
 export async function POST(NextRequest) {
+  const session = await getServerSession(authOptions);
+  if(!session) return NextResponse.json({}, {status:401});
   const body = await NextRequest.json();
   body.consumed = body.consumed === 'Yes';
 
