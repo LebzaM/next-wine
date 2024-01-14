@@ -5,7 +5,16 @@ import './globals.css';
 import { Container, Theme } from '@radix-ui/themes'
 import Navbar from './Navbar'
 import AuthProvider from './auth/Provider'
+import { Playfair_Display } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] })
+
+export const play = Playfair_Display({ 
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-play'
+
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,7 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en"  className={`${play.variable}`}>
       <body className={inter.className}>
       <AuthProvider>
       <Theme accentColor="violet" appearance="light">
