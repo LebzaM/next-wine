@@ -8,7 +8,7 @@ import AuthProvider from './auth/Provider'
 import { Playfair_Display } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] })
 
-export const play = Playfair_Display({ 
+const play = Playfair_Display({ 
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
