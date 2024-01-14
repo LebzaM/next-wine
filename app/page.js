@@ -7,9 +7,9 @@ const Homepage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center text-black">
     <div className="flex flex-col lg:flex-row lg:w-3/4">
-      {/* Text Section */}
+     
       <div className="lg:w-1/2 p-6 ">
-        <h1 className="text-3xl font-serif font-bold mb-3 border-t-4 border-l-4 p-1 border-black" >Welcome to Wine Delight</h1>
+        <h1 className="text-3xl font-serif font-bold mb-2 border-t-4 border-l-4 p-1 border-black" >Welcome to Wine Delight</h1>
         <p className="text-lg mb-8 border-b-4 border-l-4 border-black">
           Explore our exquisite collection of fine wines.
         </p>
