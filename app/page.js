@@ -10,11 +10,11 @@ const Homepage = () => {
     <div className="flex flex-col lg:flex-row lg:w-3/4">
      
       <div className="lg:w-1/2 p-6 ">
-        <h1 className="text-3xl font-play font-bold mb-9 border-t-4 border-l-4 p-1 border-black pl-5" >Welcome to Wine Delight</h1>
-        <p className="text-lg mb-8 border-b-4 border-l-4 border-black font-play pl-5">
+        <h1 className="text-3xl font-play font-bold mb-9 lg:border-t-4 lg:border-l-4 p-1 lg:border-black pl-5 " >Welcome to Wine Delight</h1>
+        <p className="text-lg mb-8 lg:border-b-4 lg:border-l-4 lg:border-black font-play pl-5">
           Explore our exquisite collection of fine wines.
         </p>
-        <Button>
+        <Button >
           <Link href='/wines'>Explore Wines</Link>
         </Button>
         
